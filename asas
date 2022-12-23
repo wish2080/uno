@@ -1,4 +1,8 @@
-const uint64_t IMAGES[] = {
+#include <LedControl.h>
+// Pin 12:Data in, Pin 11: Clock,  Pin 10: CS(Load)
+LedControl display = LedControl(12,11,10,1);
+ 
+const uint64_t R_IMAGES[] = {   //往右箭頭
   0xff818181818181ff,
   0x007e424242427e00,
   0x00003c24243c0000,
@@ -154,4 +158,30 @@ const uint64_t IMAGES[] = {
   0xc3db245a5a24dbc3,
   0x42db245a5a24db42
 };
-const int IMAGES_LEN = sizeof(IMAGES)/8;
+const int R_IMAGES_LEN = sizeof(R_IMAGES)/8;
+
+void setup()
+{
+  display.clearDisplay(0);    // 清除螢幕
+  display.shutdown(0, false);  // 關閉省電模式
+  display.setIntensity(0, 10); // 設定亮度為 8 (介於0~15之間)
+
+}
+void displayImage(uint64_t image) {
+  for (int i = 0; i < 8; i++) {
+    byte row = (image >> i * 8) & 0xFF;
+    for (int j = 0; j < 8; j++) {
+      display.setLed(0, i, j, bitRead(row, j));
+    }
+  }
+}
+
+int i = 0;
+
+void loop() {
+   displayImage(R_IMAGES[i]);
+  if (++i >= R_IMAGES_LEN ) {
+    i = 0;
+  }
+  delay(100); 
+}
