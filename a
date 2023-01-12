@@ -1,0 +1,10 @@
+bind r 
+\"cl_dummy_control 1; cl_dummy_copy_moves 1;+weapon5; cl_dummy_jump 1; bind r 
+	\\\"cl_dummy_hammer 1; +weapon1; cl_dummy_control 0; cl_dummy_copy_moves 0; bind r 
+		\\\\\\\"cl_dummy_hammer 0; bind r 
+			\\\\\\\\\\\\\\\"dummy_reset; echo 执行完毕; unbind r
+\\\\\\\\\\\\\\\"
+\\\\\\\"
+\\\"
+\"
+"
